@@ -64,4 +64,15 @@ public:
     }
 
     void display()
-   
+    {
+        int FRONT_position = FRONT;
+        int REAR_position = REAR;
+
+        //
+        if (FRONT == -1)
+        {
+            cout << "Queue is empety\n";
+            return; 
+        }
+
+        cout << "\nElement in tht queue are...\n";
