@@ -1,28 +1,81 @@
+   /**
+ * @mainpage Documantion Circular Queues
+ * 
+ * @section Introduction 
+ * Project ini merupakan project struktur data 
+ * menggunakan struktur data queues dengan menggunakan pendekatan circular arrays
+ * 
+ * @section operation 
+ * project ini menilai beberapa operasi antara lain:
+ * 1. insert
+ * 2. delete
+ * 3. display
+ * 
+ * @section cara penggunaan 
+ * berikut beberapa menu yang bisa digunakan. 
+ * 1. en queue
+ * 2. de queue
+ * 3. display
+ * 4. exit
+ * 
+ * @author profil
+ *  - nama : Muhamad Fawwaz Naufal Dzulfikar
+ *  - nim  : 20240140122
+ *  - kelas : C
+ * 
+ * @brief
+ * @version 1.0
+ * @date 2025 06 24
+ * 
+ * @copyright fawwaz@umy.ac.id (c) 2025
+ * 
+*/
 #include <iostream>
 using namespace std;
+/**
+ * @class Queues
+ * @brief class ini untuk operasi lengkap queus
+ * 
+ * 
+ * 
+ */
 class Queues {
-    int FRONT, REAR, max = 5;
-    int queue_array[5];
+    int FRONT; ///< variabel private front untuk menyimpan posisi depan antrian
+    int REAR; ///< variabel private rear untuk menyimpan posisi belakang antrian 
+    int max = 5;///< variabel private max untuk menyimpan ukuran maximum antrian 
+    int queue_array[5];///< variabel private queues_array untuk menyimpan elemen antrian 
 
 public:
+/**
+ * 
+ * @brief construct a new queues object
+ * set default queues null
+ * with front = -1 and rear = -1
+ */
     Queues() {
         FRONT = -1;
         REAR = -1;
     }
 
+
+/**
+ * @brief method untuk memasukan data dalam antrian 
+ * data dimasukan dalam variabel queues_array
+ */
+
     void insert() {
-        int num;
+        int num; ///< variabel num untuk menyimpan nilai
         cout << "Enter a number: ";
         cin >> num;
         cout << endl;
 
-        //
+        //1. cek apakah antrian penuh 
         if ((FRONT == 0 && REAR == max - 1) || (FRONT == REAR + 1))
         {
             cout << "\nQueue overflow\n"; //
             return;                        //
         }
-        
+        //2. cek apakah antrian kosong 
         if ((FRONT == -1))
         {
             FRONT = 0; //
@@ -38,9 +91,12 @@ public:
         }
         queue_array[REAR] = num;
     }
-
+/**
+ * @brief method untuk menghapus data dalam antrian 
+ * data dihapuskan dari dalam variabel queues_array
+ */
     void remove() {
-        //
+        // cek apakah antrian kosong 
         if (FRONT == -1)
         {
             cout << "Queue underflow\n";
@@ -48,27 +104,30 @@ public:
         }
         cout << "\nThe element deleted from the queue is: " << queue_array[FRONT] << "\n";
 
-        //
+        //cek apakah antrian hanya memiliki satu elemen kosong
         if (FRONT == REAR)
         {
             FRONT = -1;
             REAR = -1;
         }
         else {
-            //
+            //jika elemen yang dihapus berada diposisi terakhir array, kembali ke awal array 
             if (FRONT == max - 1)
                 FRONT = 0;
                 else
                 FRONT = FRONT + 1;
         }
     }
-
+/**
+ * @brief method untuk menampilkan data dalam antrian 
+ * data ditamplkan yang berada dalam variabel queues_array
+ */
     void display()
     {
-        int FRONT_position = FRONT;
-        int REAR_position = REAR;
+        int FRONT_position = FRONT; ///< variabel front_position untuk menandakan posisi elemen pertama pada variabel front
+        int REAR_position = REAR;///< variabel rear_position untuk menandakan posisi elemen terakhir pada variabel rear
 
-        //
+        // cek apakah antrian kosong
         if (FRONT == -1)
         {
             cout << "Queue is empety\n";
@@ -77,7 +136,7 @@ public:
 
         cout << "\nElement in tht queue are...\n";
 
-        //
+        //jika front_position <= 
         if (FRONT_position <= REAR_position)
         {
             while (FRONT_position <= REAR_position)
@@ -112,8 +171,8 @@ public:
 };
 
 int main() {
-    Queues q;
-    char ch;
+    Queues q;///< objek untuk menggunakan member yang ada pada class queues 
+    char ch;///< variabel ch untuk menyimpan pilihan pada menu yang diberikan
 
     while (true)
     {
